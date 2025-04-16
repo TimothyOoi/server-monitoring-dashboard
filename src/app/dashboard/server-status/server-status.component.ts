@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, vi } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -9,7 +9,7 @@ import { Component, OnDestroy, OnInit, vi } from '@angular/core';
 })
 export class ServerStatusComponent implements OnInit, OnDestroy {
   currentStatus: 'online' | 'offline' | 'unknown' = 'online';
-  private interval?: NodeJS.Timeout;
+  private interval?: ReturnType<typeof setInterval>;
 
   constructor() {}
 
@@ -28,6 +28,6 @@ export class ServerStatusComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    clearTimeout(this.interval);
+    clearInterval(this.interval);
   }
 }
